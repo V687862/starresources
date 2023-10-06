@@ -1,0 +1,28 @@
+body {
+    font-family: 'Courier New', monospace;
+    background-color: black;
+    color: lime;
+}
+
+.command-line-interface {
+    width: 80%;
+    margin: 2rem auto;
+    padding: 1rem;
+    border: 1px solid lime;
+}
+
+h1, h2 {
+    border-bottom: 1px solid lime;
+}
+
+button {
+    background-color: lime;
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: darkgreen;
+}
