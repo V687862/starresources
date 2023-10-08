@@ -1,3 +1,7 @@
+import Resource from 'Class/resource.js';
+import resources from "Class/resource.js";
+import Good from "./Class/good";
+import goods from "./Class/good";
 
 let outpostCount = 0;
 
@@ -11,7 +15,7 @@ function addOutpost() {
         <br>
         <h3>Resources:</h3>
     `;
-z
+
     Object.keys(resources).forEach(resourceName => {
         outpostDiv.innerHTML += `
             <input type="checkbox" id="${resourceName}-outpost${outpostCount}">
@@ -39,9 +43,6 @@ function getProducableGoods(outpostResources) {
 }
 
 function calculate() {
-    const resultsDiv = document.getElementById("results");
-    resultsDiv.innerHTML = "";  // Clear previous results
-
     const N = outpostCount; // Assuming outpostCount is global and contains the total number of outposts.
     const dp = new Array(1 << N).fill(0);
 
@@ -115,8 +116,17 @@ function getOutpostResources(outpostNumber) {
     return outpostResources;
 }
 
+
+
 window.onload = () => {
     addOutpost(); // Initialize with one outpost for users to start with.
 }
-document.getElementById("addOutpostBtn").addEventListener("click", addOutpost);
-document.getElementById("calculateBtn").addEventListener("click", calculate);
+document.getElementById('commandInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        const command = e.target.value;
+        document.getElementById('output').innerText += `\n> ${command}\n`;
+        e.target.value = '';
+        // Add your command handling logic here
+    }
+});

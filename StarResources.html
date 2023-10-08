@@ -3,20 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resource Allocation</title>
-    <link rel="stylesheet" href="star-resources.css">
+    <title>Your Project Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery.terminal/css/jquery.terminal.min.css"/>
+    <link rel="stylesheet" href="./star-resources.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.terminal/js/jquery.terminal.min.js"></script>
 </head>
 <body>
-<div class="command-line-interface">
-    <h1>Resource Allocation</h1>
+<template id="greetings">
+    ____  _               ____
+    / ___|| |_ __ _ _ __  |  _ \ ___  ___  ___  _   _ _ __ ___ ___  ___
+    \___ \| __/ _` | '__| | |_) / _ \/ __|/ _ \| | | | '__/ __/ _ \/ __|
+    ___) | || (_| | |    |  _ <  __/\__ \ (_) | |_| | | | (_|  __/\__ \
+    |____/ \__\__,_|_|    |_| \_\___||___/\___/ \__,_|_|  \___\___||___/
 
-    <button id="addOutpostBtn">Add Outpost</button>
-    <div id="outposts"></div>
-
-    <button id="calculateBtn">Calculate</button>
-    <div id="results"></div>
-</div>
-
-<script src="app.js"></script>
+    Welcome to Star Resources Terminal! Type 'help' for a list of commands.
+</template>
+<div id="my-terminal"></div>
+<script src="./app.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#my-terminal').terminal({
+            help: function() {
+                this.echo('List of commands:');
+                this.echo('- help: Display help');
+                this.echo('- add_outpost [name]: Add a new outpost');
+                this.echo('- list_outposts: List all outposts');
+                this.echo('- add_resource [outpost_name] [resource_name]: Add a resource to an outpost');
+                this.echo('- list_resources [outpost_name]: List all resources in an outpost');
+                this.echo('- remove_outpost [name]: Remove an outpost');
+                this.echo('- remove_resource [outpost_name] [resource_name]: Remove a resource from an outpost');
+                this.echo('- Calculate: Perform calculations based on current data');
+            },
+            add_outpost: function(name) {
+                this.echo('Added outpost: ' + name);
+            },
+            list_outposts: function() {
+                this.echo('Listing all outposts...');
+            },
+            add_resource: function(outpost_name, resource_name) {
+                this.echo('Added resource ' + resource_name + ' to outpost ' + outpost_name);
+            },
+            list_resources: function(outpost_name) {
+                this.echo('Listing resources for outpost: ' + outpost_name);
+            },
+            remove_outpost: function(name) {
+                this.echo('Removed outpost: ' + name);
+            },
+            remove_resource: function(outpost_name, resource_name) {
+                this.echo('Removed resource ' + resource_name + ' from outpost ' + outpost_name);
+            },
+            calculate: function() {
+                calculate();
+                this.echo('Calculating...');
+            }
+        }, {
+            greetings: $('#greetings').html(),
+            onBlur: function() {
+                // prevent losing focus
+                return false;
+            },
+            onCommandNotFound: function(command) {
+                this.echo('Unknown command: ' + command);
+            }
+        });
+    });
+</script>
 </body>
 </html>

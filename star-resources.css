@@ -1,28 +1,35 @@
-body {
+body, html {
+    margin: 0;
+    height: 100%;
     font-family: 'Courier New', monospace;
-    background-color: black;
-    color: lime;
+    background-color: #000;
+    color: #0F0;
 }
 
-.command-line-interface {
-    width: 80%;
-    margin: 2rem auto;
-    padding: 1rem;
-    border: 1px solid lime;
+.cli-interface {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #000;
+    color: #0f0;
+    padding: 20px;
+    border-radius: 5px;
 }
 
-h1, h2 {
-    border-bottom: 1px solid lime;
+#output {
+    max-height: 400px;
+    overflow-y: auto;
 }
 
-button {
-    background-color: lime;
-    color: black;
+#commandInput {
+    width: 100%;
     border: none;
-    padding: 5px 10px;
-    cursor: pointer;
+    padding: 5px;
+    color: #0F0;
+    background-color: #000;
+    caret-color: #0F0;
+    outline: none;
 }
 
-button:hover {
-    background-color: darkgreen;
+#commandInput::placeholder {
+    color: #555;
 }
