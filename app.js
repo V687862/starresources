@@ -26,6 +26,18 @@ function addOutpost() {
 
     document.getElementById("outposts").appendChild(outpostDiv);
 }
+function listOutposts() {
+    const outpostsDiv = document.getElementById('outposts');
+    const outposts = outpostsDiv.children;
+    let outpostNames = [];
+
+    for (let i = 0; i < outposts.length; i++) {
+        const outpostNameInput = outposts[i].querySelector('input[type="text"]');
+        outpostNames.push(outpostNameInput.value || `Unnamed Outpost ${i + 1}`);
+    }
+
+    return outpostNames;
+}
 
 function canProduceGood(outpostResources, good) {
     return good.resources.every(resourceOrGood => {
@@ -115,18 +127,3 @@ function getOutpostResources(outpostNumber) {
     });
     return outpostResources;
 }
-
-
-
-window.onload = () => {
-    addOutpost(); // Initialize with one outpost for users to start with.
-}
-document.getElementById('commandInput').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') {
-        e.preventDefault();
-        const command = e.target.value;
-        document.getElementById('output').innerText += `\n> ${command}\n`;
-        e.target.value = '';
-        // Add your command handling logic here
-    }
-});

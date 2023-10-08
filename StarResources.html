@@ -36,10 +36,16 @@
                 this.echo('- Calculate: Perform calculations based on current data');
             },
             add_outpost: function(name) {
+                addOutpost();
                 this.echo('Added outpost: ' + name);
             },
             list_outposts: function() {
-                this.echo('Listing all outposts...');
+                const outpostNames = listOutposts();
+                if (outpostNames.length > 0) {
+                    this.echo('Outposts: ' + outpostNames.join(', '));
+                } else {
+                    this.echo('No outposts have been added.');
+                }
             },
             add_resource: function(outpost_name, resource_name) {
                 this.echo('Added resource ' + resource_name + ' to outpost ' + outpost_name);
