@@ -1,35 +1,36 @@
-body, html {
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #000;
+    color: #0F0;
     margin: 0;
-    height: 100%;
-    font-family: 'Courier New', monospace;
-    background-color: #000;
-    color: #0F0;
+    padding: 0;
 }
 
-.cli-interface {
-    max-width: 600px;
+.terminal {
+    width: 80%;
+    max-width: 800px;
     margin: 50px auto;
+    padding: 10px;
+    border: 2px solid #0F0;
+}
+
+.output {
+    margin-bottom: 10px;
+}
+
+.input-line {
+    display: flex;
+}
+
+.prompt {
+    margin-right: 5px;
+}
+
+.input {
     background-color: #000;
-    color: #0f0;
-    padding: 20px;
-    border-radius: 5px;
-}
-
-#output {
-    max-height: 400px;
-    overflow-y: auto;
-}
-
-#commandInput {
-    width: 100%;
     border: none;
-    padding: 5px;
     color: #0F0;
-    background-color: #000;
-    caret-color: #0F0;
     outline: none;
+    width: 100%;
 }
 
-#commandInput::placeholder {
-    color: #555;
-}

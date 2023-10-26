@@ -4,8 +4,40 @@ import Good from "./Class/good";
 import goods from "./Class/good";
 
 let outpostCount = 0;
+const inputElement = document.querySelector('.input');
+const outputElement = document.querySelector('.output');
 
-function addOutpost() {
+inputElement.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        const command = inputElement.value;
+        processCommand(command);
+        inputElement.value = '';
+    }
+});
+
+function processCommand(command) {
+    let output = '';
+
+    switch (command) {
+        case 'hello':
+            output = 'Hello, user!';
+            break;
+        case 'calculate':
+            output = calculate();  // Call the function when 'date' command is entered
+            break;
+        case 'clear':
+            outputElement.innerHTML = '';
+            return;
+        default:
+            output = `Unknown command: ${command}`;
+    }
+
+    const commandOutput = document.createElement('div');
+    commandOutput.textContent = `$ ${command}\n${output}`;
+    outputElement.appendChild(commandOutput);
+}
+
+export function addOutpost() {
     outpostCount++;
     const outpostDiv = document.createElement("div");
     outpostDiv.id = `outpost${outpostCount}`;
@@ -54,7 +86,7 @@ function getProducableGoods(outpostResources) {
     return Object.values(goods).filter(good => canProduceGood(outpostResources, good));
 }
 
-function calculate() {
+export function calculate() {
     const N = outpostCount; // Assuming outpostCount is global and contains the total number of outposts.
     const dp = new Array(1 << N).fill(0);
 
@@ -87,7 +119,7 @@ function calculate() {
         }
     }
 
-    // Display the individual outpost results (remains unchanged).
+    // Display the individual outpost results.
     for (let i = 1; i <= outpostCount; i++) {
         const outpostResources = getOutpostResources(i);
         const outpostGoods = getProducableGoods(outpostResources);
